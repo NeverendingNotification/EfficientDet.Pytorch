@@ -35,6 +35,7 @@ class EfficientDet(nn.Module):
         except:
           print("pretrained model is not available ", MODEL_MAP[network])
           print("make backobne from name")
+          self.backbone = EfficientNet.from_name(MODEL_MAP[network])
         self.is_training = is_training
         self.neck = BIFPN(in_channels=self.backbone.get_list_features()[-5:],
                           out_channels=W_bifpn,
